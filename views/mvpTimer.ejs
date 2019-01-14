@@ -1,6 +1,9 @@
 <html>
 <head>
     <title>MVP計時器</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    </script>
 </head>
 <body>
     <form action="/action_page">
@@ -8,8 +11,42 @@
     Last name: <input type="text" name="LastName" value=""><br>
     <input type="submit" value="Submit">
     </form>
+    <a>Get Method：</a><button id="getBtn">Get</button><br>
+    <p id="getResult">getResult：</p>
+    <a>Post Method：</a><button id="postBtn">Post</button>
+    <p id="postResult">postResult：</p>
 
 <script type="text/javascript">
+    $("#getBtn").click(function(){
+        $.get("httpRequest/get", function(data, status){
+            $("#getResult").text("Data: " + data + "\nStatus: " + status);
+        });
+    });
+
+    $("#postBtn").click(function(){
+        var jsonData = {
+            name: "Donald Duck",
+            city: "Duckburg"
+        }
+        // $.post("httpRequest/post", jsonData, function(data, status){
+        //     $("#postResult").text("Data: " + data + "\nStatus: " + status);
+        // });
+        $.ajax({
+            url:"httpRequest/post",
+            dataType:"json",
+            type:"post",
+            contentType:"application/json",
+            data:JSON.stringify(jsonData),
+            success: function(data, status){
+                console.log("前端：")
+                console.log(data)
+                $("#postResult").text("Data: " + data.name + "\nStatus: " + status);
+            },
+            error: function( jqXhr, textStatus ){
+                console.log( textStatus );
+            }
+        });
+    });
 </script> 
 </body>
 </html>
