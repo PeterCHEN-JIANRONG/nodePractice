@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>prototype</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    </script>
+</head>
+<body>
+    <div id="area" style="background: rgb(0, 0, 255); width: 20px; height: 20px;"></div>
+    <button id="r">紅色</button>
+    <button id="g">綠色</button>
+    <button id="b">藍色</button>
+    <button id="big">變大</button>
+    <button id="small">變小</button>
+
+<script type="text/javascript">
+    
+    function box(n){
+    this.name = document.getElementById(n);
+    }
+
+    var boxDiv = {
+    red : function(){
+        this.name.style.background = '#f00';
+    },
+    green : function(){
+        this.name.style.background = '#0f0';
+    },
+    blue : function(){
+        this.name.style.background = '#00f';
+    },
+    big : function(){
+        this.name.style.width = '100px';
+        this.name.style.height = '100px';
+    },
+    small : function(){
+        this.name.style.width = '20px';
+        this.name.style.height = '20px';
+    }
+    };
+
+    box.prototype = Object.create(boxDiv);
+
+    var b = new box('area');
+
+    $('#r').click(function(){
+        b.red();
+    });
+    $('#g').click(function(){
+        b.green();
+    });
+    $('#b').click(function(){
+        b.blue();
+    });
+    $('#big').click(function(){
+        b.big();
+    });
+    $('#small').click(function(){
+        b.small();
+    });
+    
+</script> 
+</body>
+</html>

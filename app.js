@@ -14,6 +14,7 @@ app.use(bodyParser.json())
 // get method
 app.get('/', function (req, res) {
   res.send('Hi! Peter, This\'s time to start!');
+  console.log("connection message!")
 });
 
 app.get('/mvpTimer',function(req,res) {
@@ -22,9 +23,14 @@ app.get('/mvpTimer',function(req,res) {
 
 app.get('/action_page',function(req,res) {
   var values = req.query;
+  console.log('/action_page')
   console.log(values);
   values.total = add(values.FirstName, values.LastName);
   res.render('action_page',values);
+});
+
+app.get('/prototype',function(req,res) {
+  res.render('prototype');
 });
 
 app.get('/httpRequest/get',function(req,res) {

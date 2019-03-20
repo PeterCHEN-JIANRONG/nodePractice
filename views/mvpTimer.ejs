@@ -40,7 +40,7 @@
             success: function(data, status){
                 console.log("前端：")
                 console.log(data)
-                $("#postResult").text("Data: " + data.name + "\nStatus: " + status);
+                $("#postResult").text("Data: " + data.name +" ; "+ data.city + "\nStatus: " + status);
             },
             error: function( jqXhr, textStatus ){
                 console.log( textStatus );
